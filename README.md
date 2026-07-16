@@ -1,118 +1,53 @@
-![header](https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=26,1,16,21,11&height=200&section=header&text=Şevval%20Güneş&fontSize=42&fontColor=ffffff&fontAlignY=35&desc=Hibrit%20%26%20Elektrikli%20Taşıtlar%20Teknikeri%20%7C%20Yazılım%20Geliştirici%20Adayı&descSize=16&descColor=ffffff&descAlignY=55&animation=fadeIn)
+# Sesle Konuşmacı Tanıma — Colab Başlangıç Projesi
 
-<p align="center">
-  <a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1000&color=E4405F&center=true&vCenter=true&repeat=true&width=600&height=30&lines=Electric+Vehicle+Enthusiast+%E2%9A%A1%EF%B8%8F;Computer+Programming+Student+%F0%9F%93%BB;CAD+%26+CAE+Designer+%F0%9F%93%90" alt="Typing SVG" /></a>
-</p>
+Bu proje, **açık rızası olan ve önceden kayıt edilmiş kişiler** arasından bir ses kaydının sahibini tahmin eder. Ses biyometrik veridir; kayıtları izinsiz toplamayın, paylaşmayın veya gerçek hayatta tek başına kesin kimlik kanıtı olarak kullanmayın.
 
-<p align="center">
-  <a href="mailto:gnsseval98@gmail.com"><img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"></a>
-  <a href="https://www.linkedin.com/in/YOUR_LINKEDIN_HERE" target="_blank"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"></a>
-</p>
+## Hızlı kullanım
 
-<p align="center">
-  <img src="https://komarev.com/ghpvc/?username=gnsseval98&style=for-the-badge&color=E4405F&label=PROFILE+VIEWS" alt="Profile Views" />
-</p>
+1. [speaker_recognition_colab.ipynb](speaker_recognition_colab.ipynb) dosyasını Google Colab'a yükleyin.
+2. Aşağıdaki düzende bir `dataset.zip` hazırlayın:
 
-![divider](https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=26,1,16,21,11&height=2)
+```text
+data/
+  ayse/
+    001.wav
+    002.wav
+  mehmet/
+    001.wav
+    002.wav
+```
 
-## :technologist: &nbsp;Hakkımda
+3. Her kayıtlı kişi için mümkünse farklı gün ve ortamlarda alınmış en az 15–20 kısa ses kaydı ekleyin. WAV önerilir; Mac'ten QuickTime ile kaydedilen `.m4a` dosyaları da desteklenir. Her ses 3–10 saniye olması iyi bir başlangıçtır.
+4. Not defterindeki hücreleri sırayla çalıştırın. Eğitim sonunda `speaker_model.joblib` indirilebilir.
+5. Son hücrede bir test sesini yükleyerek tahmin alın.
 
-Merhaba, ben Şevval Güneş[cite: 1]! Trakya Üniversitesi **Hibrit ve Elektrikli Taşıtlar Teknolojisi** bölümünden mezun oldum[cite: 1]. Elektrikli araçların geleceğine duyduğum merak ve ilgiyle, eğitim hayatım boyunca Solidworks ve AutoCAD gibi bilgisayar destekli tasarım programlarına yoğunlaştım[cite: 1]. Havacılık temelli (Uçak Gövde Motor) lise arka planımı[cite: 1], otomotiv ve elektrikli araç teknolojileriyle birleştirdim[cite: 1]. 
+Model, hazır ECAPA-TDNN ses modelini ses imzası (embedding) çıkarmak için kullanır; ardından bu imzalarla SVM sınıflandırıcısı eğitir. Bu, küçük veri kümelerinde sıfırdan derin öğrenme eğitmeye göre daha sağlam bir başlangıçtır.
 
-Şu anda disiplinler arası bir vizyon kazanmak adına **İstanbul Üniversitesi Bilgisayar Programcılığı** bölümünde eğitimime devam ediyorum[cite: 1]. Amacım, donanım ve üretim tecrübemi yazılım dünyası ile harmanlayarak hibrit/elektrikli araçlar alanında dijital dönüşüm süreçlerine katkı sağlamaktır[cite: 1].
+Not: Sistem yalnızca eğitimdeki kayıtlı kişiler arasında seçim yapar. Tanınmayan kişileri güvenilir biçimde ayırmak için sonraki aşamada bir benzerlik eşiği ve "bilinmiyor" sınıfı eklenmelidir.
 
-![divider](https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=26,1,16,21,11&height=2)
+## Uygulama olarak çalıştırma
 
-## :rocket: &nbsp;Eğitim & Deneyim Akademisi
+Eğitim sonunda indirilen `speaker_model.joblib` dosyasını saklayın. Ardından iki seçeneğiniz vardır:
 
-<table>
-  <tr>
-    <td width="50%" valign="top">
-      <h4>:mortar_board: Eğitim Bilgileri</h4>
-      <ul>
-        <li><strong>İstanbul Üniversitesi</strong><br>Bilgisayar Programcılığı (Devam Ediyor)[cite: 1]</li>
-        <li><strong>Trakya Üniversitesi (2023)</strong><br>Hibrit ve Elektrikli Taşıtlar Teknolojisi[cite: 1]</li>
-        <li><strong>Hezarfen Ahmet Çelebi MTAİ (2020)</strong><br>Uçak Gövde Motor Bölümü[cite: 1]</li>
-      </ul>
-    </td>
-    <td width="50%" valign="top">
-      <h4>:briefcase: Stajlar & Deneyimler</h4>
-      <ul>
-        <li><strong>General Oto</strong> — Stajyer[cite: 1]<br><i>Teknik danışmanlık, atölye ve CRM departmanlarında rotasyonel eğitim süreçleri.[cite: 1]</i></li>
-        <li><strong>Renault Bayhan</strong> — Stajyer[cite: 1]<br><i>Otomotiv servis prosedürleri ve genel saha pratikleri.[cite: 1]</i></li>
-        <li><strong>Erzincan Havalimanı</strong> — Stajyer[cite: 1]<br><i>Havaalanı operasyonları ve havacılık prosedürleri uygulamaları.[cite: 1]</i></li>
-      </ul>
-    </td>
-  </tr>
-</table>
+### Google Colab'da
 
-![divider](https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=26,1,16,21,11&height=2)
+Not defterinin en altına yeni bir kod hücresi ekleyin ve sırayla şunları çalıştırın:
 
-## :scroll: &nbsp;Kurslar ve Sertifikalar
+```python
+!pip -q install gradio
+!wget -q https://raw.githubusercontent.com/<KULLANICI_ADIN>/<PROJE_ADIN>/main/gradio_app.py
+!python gradio_app.py
+```
 
-<div align="center">
+Bu yöntem için önce proje dosyalarını GitHub'a yüklemek gerekir. Yeni başlayanlar için aşağıdaki Mac yöntemi daha kolaydır.
 
-| &nbsp; | Yıl | Eğitim / Sertifika Adı | Kurum / İçerik |
-|:------:|:----:|------------------------|----------------|
-| :desktop_computer: | **2024** | **CAE Yazılımları ve Ar-Ge Sürecindeki Katkısı** | İstanbul Sanayi Odası (Bilgisayar Destekli Analiz)[cite: 1] |
-| :chart_with_upwards_trend: | **2024** | **Üretimde Dijital Dönüşüm ile Verimlilik** | İstanbul Sanayi Odası (Kalite Geliştirme)[cite: 1] |
-| :triangular_ruler: | **2022** | **SOLIDWORKS Eğitimi** | Elginkan Vakfı & Üniversite Eğitimi (Temel-İleri Çizim)[cite: 1] |
-| :light_bulb: | **2022** | **Sorun Çözme Teknikleri** | Elginkan Vakfı[cite: 1] |
-| :car: | **2021** | **Skoda İş Eğitimi** | Diferansiyel, Araç Aerodinamiği ve Genel Bilgilendirme[cite: 1] |
-| :airplane: | **2019** | **Erzincan Havalimanı Güvenlik Bilinci** | Pist Parametreleri, Uçak Yangın Tatbikatı ve Güvenlik[cite: 1] |
+### Mac'te
 
-</div>
+Terminal'i açın, bu klasöre gidin ve aşağıdaki komutları çalıştırın:
 
-![divider](https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=26,1,16,21,11&height=2)
+```bash
+pip3 install -r requirements.txt
+python3 gradio_app.py
+```
 
-## :wrench: &nbsp;Çalışma Alanları
-
-<div align="center">
-
-![Hybrid & EV](https://img.shields.io/badge/Hybrid_&_Electric_Vehicles-E4405F?style=for-the-badge&logo=lightning&logoColor=white)
-![CAD Designing](https://img.shields.io/badge/CAD_Designing-🎨-005A9C?style=for-the-badge)
-![Aerodynamics](https://img.shields.io/badge/Vehicle_Aerodynamics-6366F1?style=for-the-badge&logo=aircanada&logoColor=white)
-![Digital Transformation](https://img.shields.io/badge/Digital_Transformation-F7931E?style=for-the-badge&logo=industry&logoColor=white)
-![Aviation](https://img.shields.io/badge/Aviation_Maintenance-000000?style=for-the-badge&logo=aeroflot&logoColor=white)
-
-</div>
-
-## :desktop_computer: &nbsp;Yetenekler (Tech Stack)
-
-<div align="center">
-
-![Solidworks](https://img.shields.io/badge/Solidworks-EEEEEE?style=for-the-badge&logo=solidworks&logoColor=red)
-![AutoCAD](https://img.shields.io/badge/AutoCAD-063970?style=for-the-badge&logo=autodesk&logoColor=white)
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![C++](https://img.shields.io/badge/C++-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white)
-![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
-
-</div>
-
-![divider](https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=26,1,16,21,11&height=2)
-
-## :bar_chart: &nbsp;GitHub İstatistiklerim
-
-<div align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=gnsseval98&show_icons=true&theme=tokyonight&hide_border=true&count_private=true&bg_color=0d1117" alt="GitHub Stats" height="170" />
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=gnsseval98&theme=tokyonight&hide_border=true&background=0d1117" alt="GitHub Streak" height="170" />
-</div>
-
-<br />
-
-<div align="center">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=gnsseval98&layout=compact&theme=tokyonight&hide_border=true&bg_color=0d1117&langs_count=8" alt="Top Languages" height="170" />
-</div>
-
-![divider](https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=26,1,16,21,11&height=2)
-
-## :volleyball: &nbsp;Hobiler & İlgi Alanları
-* 🏐 Voleybol oynamak[cite: 1]
-* 🏋️ Fitness yapmak[cite: 1]
-* 📐 Solidworks kullanarak özgün tasarımlar ve çizimler geliştirmek[cite: 1]
-
-![footer](https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=26,1,16,21,11&height=120&section=footer)
-
-<p align="center">
-  <a href="mailto:gnsseval98@gmail.com"><img src="https://img.shields.io/badge/Email-gnsseval98%40gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"></a>
-</p>
+Ekranda çıkan yerel bağlantıyı tarayıcıda açın. Uygulamada önce `speaker_model.joblib`, sonra test sesini seçip **Sesi kontrol et** düğmesine basın.

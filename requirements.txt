@@ -1,0 +1,6 @@
+gradio
+joblib
+numpy
+speechbrain
+torch
+torchaudio
